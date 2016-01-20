@@ -4,6 +4,7 @@ require 'logger'
 require 'tempfile'
 require 'typhoeus'
 require 'uri'
+require 'base64'
 
 module InsightlySwagger
   class ApiClient
@@ -63,7 +64,7 @@ module InsightlySwagger
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
 
-      
+      header_params['Authorization'] = "Basic " + Base64.encode64(@config.api_key)
 
       req_opts = {
         :method => http_method,
