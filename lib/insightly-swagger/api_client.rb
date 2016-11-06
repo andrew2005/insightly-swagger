@@ -64,6 +64,8 @@ module InsightlySwagger
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
 
+      raise ArgumentError, 'No API Key Specified' unless @config.api_key
+
       header_params['Authorization'] = "Basic " + Base64.encode64(@config.api_key)
 
       req_opts = {
